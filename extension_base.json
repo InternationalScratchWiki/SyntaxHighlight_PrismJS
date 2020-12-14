@@ -1,0 +1,21 @@
+{
+    "name": "SyntaxHighlight_PrismJS",
+    "author": ["apple502j"],
+    "descriptionmsg": "syntaxhighlight-desc",
+	"license-name": "GPL-3.0-or-later",
+	"type": "parserhook",
+    "version": "1.0.0",
+    "url": "https://github.com/InternationalScratchWiki/SyntaxHighlight_PrismJS",
+    "AutoloadClasses": {
+        "SyntaxHighlight": "includes/SyntaxHighlight.php"
+    },
+    "Hooks": {
+        "ParserFirstCallInit": "SyntaxHighlight::onParserFirstCallInit"
+    },
+    "MessagesDirs": {
+		"SyntaxHighlight_PrismJS": [
+			"i18n"
+		]
+	},
+    "manifest_version": 2
+}

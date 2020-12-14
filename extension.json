@@ -1,0 +1,325 @@
+{
+    "name": "SyntaxHighlight_PrismJS",
+    "author": [
+        "apple502j"
+    ],
+    "descriptionmsg": "syntaxhighlight-desc",
+    "license-name": "GPL-3.0-or-later",
+    "type": "parserhook",
+    "version": "1.0.0",
+    "url": "https://github.com/InternationalScratchWiki/SyntaxHighlight_PrismJS",
+    "AutoloadClasses": {
+        "SyntaxHighlight": "includes/SyntaxHighlight.php"
+    },
+    "Hooks": {
+        "ParserFirstCallInit": "SyntaxHighlight::onParserFirstCallInit"
+    },
+    "MessagesDirs": {
+        "SyntaxHighlight_PrismJS": [
+            "i18n"
+        ]
+    },
+    "manifest_version": 2,
+    "ResourceModules": {
+        "ext.SyntaxHighlight.core": {
+            "styles": "prism.css",
+            "packageFiles": "prism-core.min.js",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.core.css": {
+            "styles": "syntaxhighlight-core.css",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.core.js": {
+            "packageFiles": "syntaxhighlight-core.js",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.lineHighlight": {
+            "styles": "prism-line-highlight.css",
+            "packageFiles": "prism-line-highlight.min.js",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ]
+        },
+        "ext.SyntaxHighlight.lineNumbers": {
+            "styles": "prism-line-numbers.css",
+            "packageFiles": "prism-line-numbers.min.js",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ]
+        },
+        "ext.SyntaxHighlight.bash": {
+            "packageFiles": [
+                "prism-bash.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.bbcode": {
+            "packageFiles": [
+                "prism-bbcode.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.c": {
+            "packageFiles": [
+                "prism-c.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.clike"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.clike": {
+            "packageFiles": [
+                "prism-clike.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.cpp": {
+            "packageFiles": [
+                "prism-cpp.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.c"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.css": {
+            "packageFiles": [
+                "prism-css.min.js",
+                "prism-css-extras.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.diff": {
+            "packageFiles": [
+                "prism-diff.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.java": {
+            "packageFiles": [
+                "prism-java.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.clike"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.javascript": {
+            "packageFiles": [
+                "prism-javascript.min.js",
+                "prism-js-extras.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.clike"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.json": {
+            "packageFiles": [
+                "prism-json.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.jsstacktrace": {
+            "packageFiles": [
+                "prism-jsstacktrace.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.jsx": {
+            "packageFiles": [
+                "prism-jsx.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.markup",
+                "ext.SyntaxHighlight.javascript"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.lua": {
+            "packageFiles": [
+                "prism-lua.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.markdown": {
+            "packageFiles": [
+                "prism-markdown.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.markup"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.markup": {
+            "packageFiles": [
+                "prism-markup.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.markupTemplating": {
+            "packageFiles": [
+                "prism-markup-templating.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.markup"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.php": {
+            "packageFiles": [
+                "prism-php.min.js",
+                "prism-php-extras.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.markupTemplating"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.python": {
+            "packageFiles": [
+                "prism-python.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.r": {
+            "packageFiles": [
+                "prism-r.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.regex": {
+            "packageFiles": [
+                "prism-regex.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.ruby": {
+            "packageFiles": [
+                "prism-ruby.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.clike"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.shellSession": {
+            "packageFiles": [
+                "prism-shell-session.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.bash"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.sql": {
+            "packageFiles": [
+                "prism-sql.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.swift": {
+            "packageFiles": [
+                "prism-swift.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.clike"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.wiki": {
+            "packageFiles": [
+                "prism-wiki.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.markup"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        }
+    }
+}
