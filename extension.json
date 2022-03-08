@@ -65,6 +65,16 @@
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
         },
+        "ext.SyntaxHighlight.basic": {
+            "packageFiles": [
+                "prism-basic.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
         "ext.SyntaxHighlight.bbcode": {
             "packageFiles": [
                 "prism-bbcode.min.js"
@@ -306,6 +316,17 @@
             "dependencies": [
                 "ext.SyntaxHighlight.core",
                 "ext.SyntaxHighlight.clike"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.vbnet": {
+            "packageFiles": [
+                "prism-vbnet.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.basic"
             ],
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
