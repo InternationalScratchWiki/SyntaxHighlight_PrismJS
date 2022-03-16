@@ -101,7 +101,7 @@ class SyntaxHighlight {
         $code = trim($code);
 
         $codeTagAttrs = array(
-            'class' => 'mw-syntaxhighlight-code mw-content-ltr language-' . $lang,
+            'class' => 'mw-syntaxhighlight-code language-' . $lang,
             'dir' => 'ltr'
         );
         if ($inline) {
@@ -116,7 +116,7 @@ class SyntaxHighlight {
 
         if (!$inline) {
             $preTagAttrs = array(
-                'class' => 'mw-syntaxhighlight ' . ($showLineNum ? 'line-numbers' : 'no-line-numbers'),
+                'class' => 'mw-syntaxhighlight mw-content-ltr ' . ($showLineNum ? 'line-numbers' : 'no-line-numbers'),
                 'dir' => 'ltr'
             );
             if ($highlight) {
