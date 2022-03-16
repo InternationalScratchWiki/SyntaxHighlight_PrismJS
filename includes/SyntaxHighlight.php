@@ -101,7 +101,7 @@ class SyntaxHighlight {
         $code = trim($code);
 
         $codeTagAttrs = array(
-            'class' => 'mw-syntaxhighlight-code language-' . $lang,
+            'class' => 'mw-syntaxhighlight-code mw-content-ltr language-' . $lang,
             'dir' => 'ltr'
         );
         if ($inline) {
