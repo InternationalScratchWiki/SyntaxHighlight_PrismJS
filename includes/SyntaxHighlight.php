@@ -16,6 +16,7 @@ class SyntaxHighlight {
     /* Mapping of PrismJS language to ResourceLoader name */
     const AVAILABLE_LANGUAGES = array(
         'bash' => 'bash',
+        'basic' => 'basic',
         'shell' => 'bash',
         'bbcode' => 'bbcode',
         'shortcode' => 'bbcode',
@@ -49,6 +50,7 @@ class SyntaxHighlight {
         'shellsession' => 'shellSession',
         'sql' => 'sql',
         'swift' => 'swift',
+        'vbnet' => 'vbnet',
         'wiki' => 'wiki'
     );
     /* Mapping of SyntaxHighlight name to PrismJS name */
