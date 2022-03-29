@@ -55,6 +55,16 @@
                 "ext.SyntaxHighlight.core"
             ]
         },
+        "ext.SyntaxHighlight.apacheconf": {
+            "packageFiles": [
+                "prism-apacheconf.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
         "ext.SyntaxHighlight.bash": {
             "packageFiles": [
                 "prism-bash.min.js"
@@ -75,9 +85,29 @@
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
         },
+        "ext.SyntaxHighlight.batch": {
+            "packageFiles": [
+                "prism-batch.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
         "ext.SyntaxHighlight.bbcode": {
             "packageFiles": [
                 "prism-bbcode.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.bnf": {
+            "packageFiles": [
+                "prism-bnf.min.js"
             ],
             "dependencies": [
                 "ext.SyntaxHighlight.core"
@@ -203,6 +233,16 @@
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
         },
+        "ext.SyntaxHighlight.makefile": {
+            "packageFiles": [
+                "prism-makefile.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
         "ext.SyntaxHighlight.markdown": {
             "packageFiles": [
                 "prism-markdown.min.js"
@@ -235,6 +275,26 @@
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
         },
+        "ext.SyntaxHighlight.nasm": {
+            "packageFiles": [
+                "prism-nasm.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.perl": {
+            "packageFiles": [
+                "prism-perl.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
         "ext.SyntaxHighlight.php": {
             "packageFiles": [
                 "prism-php.min.js",
@@ -243,6 +303,16 @@
             "dependencies": [
                 "ext.SyntaxHighlight.core",
                 "ext.SyntaxHighlight.markupTemplating"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.powershell": {
+            "packageFiles": [
+                "prism-powershell.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
             ],
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
@@ -331,6 +401,16 @@
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
         },
+        "ext.SyntaxHighlight.vim": {
+            "packageFiles": [
+                "prism-vim.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
         "ext.SyntaxHighlight.wiki": {
             "packageFiles": [
                 "prism-wiki.min.js"
@@ -338,6 +418,16 @@
             "dependencies": [
                 "ext.SyntaxHighlight.core",
                 "ext.SyntaxHighlight.markup"
+            ],
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.yaml": {
+            "packageFiles": [
+                "prism-yaml.min.js"
+            ],
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
             ],
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"

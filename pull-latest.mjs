@@ -18,9 +18,12 @@ import {camelCase} from "camel-case";
 
 const PLUGINS = ["line-highlight", "line-numbers"];
 const LANGUAGES = [
+    "apacheconf",
     "core",
     "bash",
+    "batch",
     "bbcode",
+    "bnf",
     "c",
     "clike",
     "cpp",
@@ -34,11 +37,15 @@ const LANGUAGES = [
     "jsstacktrace",
     "jsx",
     "lua",
+    "makefile",
     "markdown",
     "markup",
     "markup-templating",
+    "nasm",
+    "perl",
     "php",
     "php-extras",
+    "powershell",
     "python",
     "r",
     "regex",
@@ -46,7 +53,10 @@ const LANGUAGES = [
     "shell-session",
     "sql",
     "swift",
-    "wiki"
+    "vbnet",
+    "vim",
+    "wiki",
+    "yaml"
 ];
 const EXTRAS = {
     css: "css-extras",
@@ -65,6 +75,7 @@ const DEPENDENCIES = {
     ruby: ["clike"],
     "shell-session": ["bash"],
     swift: ["clike"],
+    vbnet: ["basic"],
     wiki: ["markup"]
 };
 
