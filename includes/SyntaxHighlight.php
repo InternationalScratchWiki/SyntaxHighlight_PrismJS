@@ -15,11 +15,14 @@
 class SyntaxHighlight {
     /* Mapping of PrismJS language to ResourceLoader name */
     const AVAILABLE_LANGUAGES = array(
+        'apacheconf' => 'apacheconf',
         'bash' => 'bash',
         'basic' => 'basic',
         'shell' => 'bash',
+        'batch' => 'batch',
         'bbcode' => 'bbcode',
         'shortcode' => 'bbcode',
+        'bnf' => 'bnf',
         'c' => 'c',
         'cpp' => 'cpp',
         'css' => 'css',
@@ -31,6 +34,7 @@ class SyntaxHighlight {
         'jsstacktrace' => 'jsstacktrace',
         'jsx' => 'jsx',
         'lua' => 'lua',
+        'makefile' => 'makefile',
         'markdown' => 'markdown',
         'md' => 'markdown',
         'markup' => 'markup',
@@ -38,7 +42,10 @@ class SyntaxHighlight {
         'xml' => 'markup',
         'svg' => 'markup',
         'mathml' => 'markup',
+        'nasm' => 'nasm',
+        'perl' => 'perl',
         'php' => 'php',
+        'powershell' => 'powershell',
         'python' => 'python',
         'py' => 'python',
         'r' => 'r',
@@ -51,12 +58,17 @@ class SyntaxHighlight {
         'sql' => 'sql',
         'swift' => 'swift',
         'vbnet' => 'vbnet',
-        'wiki' => 'wiki'
+        'vim' => 'vim',
+        'wiki' => 'wiki',
+        'yaml' => 'yaml'
     );
     /* Mapping of SyntaxHighlight name to PrismJS name */
     const ALIAS_LANGUAGES = array(
+        'apache' => 'apacheconf',
+        'bat' => 'batch',
         'c++' => 'cpp',
         'react' => 'jsx',
+        'make' => 'makefile',
         'mediawiki' => 'wiki',
         'mw' => 'wiki'
     );
