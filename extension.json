@@ -75,16 +75,6 @@
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
         },
-        "ext.SyntaxHighlight.basic": {
-            "packageFiles": [
-                "prism-basic.min.js"
-            ],
-            "dependencies": [
-                "ext.SyntaxHighlight.core"
-            ],
-            "localBasePath": "resources",
-            "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
-        },
         "ext.SyntaxHighlight.batch": {
             "packageFiles": [
                 "prism-batch.min.js"
