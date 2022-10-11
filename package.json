@@ -1,16 +1,16 @@
 {
-  "name": "syntaxhighlight_prismjs",
-  "version": "1.0.0",
-  "description": "PrismJS-based syntax highlighter for MediaWiki, mostly compatible with SyntaxHighlight_GeSHi",
-  "scripts": {
-    "build": "node ./pull-latest.mjs",
-    "json": "node ./pull-latest.mjs -Nd"
-  },
-  "private": true,
-  "author": "apple502j",
-  "license": "GPL-3.0-or-later",
-  "devDependencies": {
-    "camel-case": "^4.1.2",
-    "node-fetch": "^3.2.10"
-  }
+    "name": "syntaxhighlight_prismjs",
+    "version": "1.1.0",
+    "description": "PrismJS-based syntax highlighter for MediaWiki, mostly compatible with SyntaxHighlight_GeSHi",
+    "scripts": {
+        "build": "node ./pull-latest.mjs",
+        "json": "node ./pull-latest.mjs -Nd"
+    },
+    "private": true,
+    "author": "apple502j",
+    "license": "GPL-3.0-or-later",
+    "devDependencies": {
+        "camel-case": "^4.1.2",
+        "node-fetch": "^3.2.10"
+    }
 }

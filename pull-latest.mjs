@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import fetch from "node-fetch";
-import {camelCase} from "camel-case";
+import { camelCase } from "camel-case";
 
 /*
     Copyright (C) 2020 apple502j All rights reversed.
@@ -83,7 +83,7 @@ if (process.argv[2] !== "-Nd") {
     // Part 1: Download
     const write = (fn, data) => {
         console.log("Writing:", fn);
-        return fs.writeFile(`./resources/${fn}`, data, {encoding: "utf8"})
+        return fs.writeFile(`./resources/${fn}`, data, { encoding: "utf8" })
     };
 
     await Promise.all([
@@ -100,8 +100,8 @@ if (process.argv[2] !== "-Nd") {
         ]),
         ...LANGUAGES.map(
             name => fetch(`https://raw.githubusercontent.com/PrismJS/prism/master/components/prism-${name}.min.js`)
-                        .then(resp => resp.text())
-                        .then(txt => write(`prism-${name}.min.js`, txt))
+                .then(resp => resp.text())
+                .then(txt => write(`prism-${name}.min.js`, txt))
         )
     ]);
 }
@@ -125,13 +125,20 @@ extensionJSON.ResourceModules = {
         packageFiles: "syntaxhighlight-core.js",
         localBasePath: "resources",
         remoteExtPath: "SyntaxHighlight_PrismJS/resources"
+    },
+    "ext.SyntaxHighlight.wikiEditor": {
+        packageFiles: "syntaxhighlight-wikieditor.js",
+        localBasePath: "resources",
+        remoteExtPath: "SyntaxHighlight_PrismJS/resources",
+        dependencies: ["ext.wikiEditor"],
+        messages: ["syntaxhighlight-wikieditor-button"]
     }
 };
 
 const solveDependencies = langName =>
     DEPENDENCIES.hasOwnProperty(langName) ?
-    DEPENDENCIES[langName].map(dependency => `ext.SyntaxHighlight.${camelCase(dependency)}`) :
-    [];
+        DEPENDENCIES[langName].map(dependency => `ext.SyntaxHighlight.${camelCase(dependency)}`) :
+        [];
 
 PLUGINS.forEach(pluginName => {
     extensionJSON.ResourceModules[`ext.SyntaxHighlight.${camelCase(pluginName)}`] = {

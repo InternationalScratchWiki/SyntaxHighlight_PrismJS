@@ -1,4 +1,5 @@
 {
     "syntaxhighlight-desc": "PrismJS-based syntax highlighter for MediaWiki.",
-    "syntaxhighlight-error-category": "Pages with syntax highlighting errors"
+    "syntaxhighlight-error-category": "Pages with syntax highlighting errors",
+    "syntaxhighlight-wikieditor-button": "Syntax highlight"
 }

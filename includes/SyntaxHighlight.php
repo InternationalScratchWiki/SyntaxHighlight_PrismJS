@@ -14,6 +14,7 @@
 */
 
 use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Hook\EditPage__showEditForm_initialHook;
 
 class SyntaxHighlight implements ParserFirstCallInitHook {
     /* Mapping of PrismJS language to ResourceLoader name */
@@ -79,6 +80,12 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
     public function onParserFirstCallInit($parser) {
         $parser->setHook('syntaxhighlight', array('SyntaxHighlight', 'onSyntaxHighlight'));
         $parser->setHook('source', array('SyntaxHighlight', 'onSyntaxHighlight'));
+    }
+
+    public function onEditPage__showEditForm_initial($editor, $out) {
+        if (ExtensionRegistry::getInstance()->isLoaded('WikiEditor')) {
+            $out->addModules('ext.SyntaxHighlight.wikiEditor');
+        }
     }
 
     private static function addError(Parser $parser): void {

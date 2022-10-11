@@ -1,0 +1,5 @@
+{
+    "syntaxhighlight-desc": "Description of extension",
+    "syntaxhighlight-error-category": "Name of the tracking category added to pages with highlighting errors",
+    "syntaxhighlight-wikieditor-button": "Name of the button on WikiEditor to add syntax highlight tag"
+}

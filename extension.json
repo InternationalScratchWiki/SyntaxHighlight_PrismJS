@@ -12,7 +12,8 @@
         "SyntaxHighlight": "includes/SyntaxHighlight.php"
     },
     "Hooks": {
-        "ParserFirstCallInit": "main"
+        "ParserFirstCallInit": "main",
+        "EditPage::showEditForm:initial": "main"
     },
     "HookHandlers": {
         "main": {
@@ -41,6 +42,17 @@
             "packageFiles": "syntaxhighlight-core.js",
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
+        },
+        "ext.SyntaxHighlight.wikiEditor": {
+            "packageFiles": "syntaxhighlight-wikieditor.js",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.wikiEditor"
+            ],
+            "messages": [
+                "syntaxhighlight-wikieditor-button"
+            ]
         },
         "ext.SyntaxHighlight.lineHighlight": {
             "styles": "prism-line-highlight.css",

@@ -12,7 +12,8 @@
         "SyntaxHighlight": "includes/SyntaxHighlight.php"
     },
     "Hooks": {
-        "ParserFirstCallInit": "main"
+        "ParserFirstCallInit": "main",
+        "EditPage::showEditForm:initial": "main"
     },
     "HookHandlers": {
         "main": {
