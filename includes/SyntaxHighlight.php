@@ -1,6 +1,6 @@
 <?php
 /*
-    Copyright (C) 2020 apple502j All rights reversed.
+    Copyright (C) 2020-2022 apple502j All rights reversed.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -12,7 +12,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class SyntaxHighlight {
+
+use MediaWiki\Hook\ParserFirstCallInitHook;
+
+class SyntaxHighlight implements ParserFirstCallInitHook {
     /* Mapping of PrismJS language to ResourceLoader name */
     const AVAILABLE_LANGUAGES = array(
         'apacheconf' => 'apacheconf',
@@ -73,16 +76,16 @@ class SyntaxHighlight {
         'mw' => 'wiki'
     );
 
-    public static function onParserFirstCallInit(Parser $parser) : void {
+    public function onParserFirstCallInit($parser) {
         $parser->setHook('syntaxhighlight', array('SyntaxHighlight', 'onSyntaxHighlight'));
         $parser->setHook('source', array('SyntaxHighlight', 'onSyntaxHighlight'));
     }
 
-    private static function addError(Parser $parser) : void {
+    private static function addError(Parser $parser): void {
         $parser->addTrackingCategory('syntaxhighlight-error-category');
     }
 
-    public static function onSyntaxHighlight(string $code, array $argv, Parser $parser, PPFrame $frame) : array {
+    public static function onSyntaxHighlight(string $code, array $argv, Parser $parser, PPFrame $frame): array {
         $out = $parser->getOutput();
 
         $lang = 'none';

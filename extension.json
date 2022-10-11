@@ -12,7 +12,12 @@
         "SyntaxHighlight": "includes/SyntaxHighlight.php"
     },
     "Hooks": {
-        "ParserFirstCallInit": "SyntaxHighlight::onParserFirstCallInit"
+        "ParserFirstCallInit": "main"
+    },
+    "HookHandlers": {
+        "main": {
+            "class": "SyntaxHighlight"
+        }
     },
     "MessagesDirs": {
         "SyntaxHighlight_PrismJS": [
