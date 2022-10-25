@@ -84,7 +84,7 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
 
     public function onEditPage__showEditForm_initial($editor, $out) {
         if (ExtensionRegistry::getInstance()->isLoaded('WikiEditor')) {
-            $out->addModules('ext.SyntaxHighlight.wikiEditor');
+            $out->addModules(['ext.SyntaxHighlight.wikiEditor']);
         }
     }
 
@@ -130,7 +130,7 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
             $codeTagAttrs['class'] .= ' mw-syntaxhighlight-inline';
         }
         if ($lang !== 'none') {
-            $out->addModules('ext.SyntaxHighlight.core.js');
+            $out->addModules(['ext.SyntaxHighlight.core.js']);
             $codeTagAttrs['data-mw-syntaxhighlight-resourceloader-module'] = self::AVAILABLE_LANGUAGES[$lang];
         }
 
@@ -147,7 +147,7 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
             $outputCode = Html::rawElement('pre', $preTagAttrs, $outputCode);
         }
 
-        $out->addModuleStyles('ext.SyntaxHighlight.core.css');
+        $out->addModuleStyles(['ext.SyntaxHighlight.core.css']);
         return array($outputCode, 'markerType' => 'nowiki');
     }
 }
