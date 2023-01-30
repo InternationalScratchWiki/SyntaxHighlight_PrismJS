@@ -16,6 +16,13 @@ import { camelCase } from "camel-case";
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+const THEMES = [
+    "prism",
+    "prism-okaidia",
+    "prism-coy",
+    "prism-solarizedlight",
+    "prism-tomorrow",
+];
 const PLUGINS = [
     "line-highlight",
     "line-numbers",
@@ -94,11 +101,13 @@ if (process.argv[2] !== "-Nd") {
     };
 
     await Promise.all([
-        fetch(
-            "https://raw.githubusercontent.com/PrismJS/prism/master/themes/prism.css"
-        )
-            .then((resp) => resp.text())
-            .then((txt) => write("prism.css", txt)),
+        ...THEMES.map((name) =>
+            fetch(
+                `https://raw.githubusercontent.com/PrismJS/prism/master/themes/${name}.min.css`
+            )
+                .then((resp) => resp.text())
+                .then((txt) => write(`${name}.min.css`, txt))
+        ),
         ...PLUGINS.flatMap((name) => [
             fetch(
                 `https://raw.githubusercontent.com/PrismJS/prism/master/plugins/${name}/prism-${name}.min.js`
@@ -106,10 +115,10 @@ if (process.argv[2] !== "-Nd") {
                 .then((resp) => resp.text())
                 .then((txt) => write(`prism-${name}.min.js`, txt)),
             fetch(
-                `https://raw.githubusercontent.com/PrismJS/prism/master/plugins/${name}/prism-${name}.css`
+                `https://raw.githubusercontent.com/PrismJS/prism/master/plugins/${name}/prism-${name}.min.css`
             )
                 .then((resp) => resp.text())
-                .then((txt) => write(`prism-${name}.css`, txt)),
+                .then((txt) => write(`prism-${name}.min.css`, txt)),
         ]),
         ...LANGUAGES.map((name) =>
             fetch(
@@ -126,7 +135,6 @@ const extensionJSONBase = await fs.readFile("./extension_base.json", "utf8");
 const extensionJSON = JSON.parse(extensionJSONBase);
 extensionJSON.ResourceModules = {
     "ext.SyntaxHighlight.core": {
-        styles: "prism.css",
         packageFiles: "prism-core.min.js",
         localBasePath: "resources",
         remoteExtPath: "SyntaxHighlight_PrismJS/resources",
@@ -157,11 +165,25 @@ const solveDependencies = (name) =>
           )
         : [];
 
+THEMES.forEach((themeName) => {
+    extensionJSON.ResourceModules[
+        `ext.SyntaxHighlight.theme.${camelCase(themeName)}`
+    ] = {
+        styles: `${themeName}.min.css`,
+        localBasePath: "resources",
+        remoteExtPath: "SyntaxHighlight_PrismJS/resources",
+        dependencies: [
+            "ext.SyntaxHighlight.core.css",
+            ...solveDependencies(themeName),
+        ],
+    };
+});
+
 PLUGINS.forEach((pluginName) => {
     extensionJSON.ResourceModules[
         `ext.SyntaxHighlight.${camelCase(pluginName)}`
     ] = {
-        styles: `prism-${pluginName}.css`,
+        styles: `prism-${pluginName}.min.css`,
         packageFiles: `prism-${pluginName}.min.js`,
         localBasePath: "resources",
         remoteExtPath: "SyntaxHighlight_PrismJS/resources",

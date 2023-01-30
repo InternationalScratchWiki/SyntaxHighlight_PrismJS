@@ -1,5 +1,12 @@
 {
     "syntaxhighlight-desc": "PrismJS-based syntax highlighter for MediaWiki.",
     "syntaxhighlight-error-category": "Pages with syntax highlighting errors",
-    "syntaxhighlight-wikieditor-button": "Syntax highlight"
+    "syntaxhighlight-wikieditor-button": "Syntax highlight",
+    "syntaxhighlight-theme-default": "Use default theme",
+    "syntaxhighlight-theme-prism": "Prism (light)",
+    "syntaxhighlight-theme-coy": "Coy (light)",
+    "syntaxhighlight-theme-okaidia": "Okaidia (dark)",
+    "syntaxhighlight-theme-solarizedlight": "Solarized Light (light)",
+    "syntaxhighlight-theme-tomorrow": "Tomorrow Night (dark)",
+    "syntaxhighlight-preference-theme": "Syntax highlight theme:"
 }

@@ -13,11 +13,16 @@
     },
     "Hooks": {
         "ParserFirstCallInit": "main",
-        "EditPage::showEditForm:initial": "main"
+        "EditPage::showEditForm:initial": "main",
+        "GetPreferences": "main",
+        "ParserOptionsRegister": "main"
     },
     "HookHandlers": {
         "main": {
-            "class": "SyntaxHighlight"
+            "class": "SyntaxHighlight",
+            "services": [
+                "UserOptionsLookup"
+            ]
         }
     },
     "MessagesDirs": {
@@ -25,10 +30,12 @@
             "i18n"
         ]
     },
+    "DefaultUserOptions": {
+        "syntaxhighlight-theme": "default"
+    },
     "manifest_version": 2,
     "ResourceModules": {
         "ext.SyntaxHighlight.core": {
-            "styles": "prism.css",
             "packageFiles": "prism-core.min.js",
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources"
@@ -54,8 +61,48 @@
                 "syntaxhighlight-wikieditor-button"
             ]
         },
+        "ext.SyntaxHighlight.theme.prism": {
+            "styles": "prism.min.css",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core.css"
+            ]
+        },
+        "ext.SyntaxHighlight.theme.prismOkaidia": {
+            "styles": "prism-okaidia.min.css",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core.css"
+            ]
+        },
+        "ext.SyntaxHighlight.theme.prismCoy": {
+            "styles": "prism-coy.min.css",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core.css"
+            ]
+        },
+        "ext.SyntaxHighlight.theme.prismSolarizedlight": {
+            "styles": "prism-solarizedlight.min.css",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core.css"
+            ]
+        },
+        "ext.SyntaxHighlight.theme.prismTomorrow": {
+            "styles": "prism-tomorrow.min.css",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core.css"
+            ]
+        },
         "ext.SyntaxHighlight.lineHighlight": {
-            "styles": "prism-line-highlight.css",
+            "styles": "prism-line-highlight.min.css",
             "packageFiles": "prism-line-highlight.min.js",
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
@@ -64,7 +111,7 @@
             ]
         },
         "ext.SyntaxHighlight.lineNumbers": {
-            "styles": "prism-line-numbers.css",
+            "styles": "prism-line-numbers.min.css",
             "packageFiles": "prism-line-numbers.min.js",
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
@@ -73,7 +120,7 @@
             ]
         },
         "ext.SyntaxHighlight.toolbar": {
-            "styles": "prism-toolbar.css",
+            "styles": "prism-toolbar.min.css",
             "packageFiles": "prism-toolbar.min.js",
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
@@ -82,7 +129,7 @@
             ]
         },
         "ext.SyntaxHighlight.copyToClipboard": {
-            "styles": "prism-copy-to-clipboard.css",
+            "styles": "prism-copy-to-clipboard.min.css",
             "packageFiles": "prism-copy-to-clipboard.min.js",
             "localBasePath": "resources",
             "remoteExtPath": "SyntaxHighlight_PrismJS/resources",

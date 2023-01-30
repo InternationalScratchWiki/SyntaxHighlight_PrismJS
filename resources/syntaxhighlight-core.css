@@ -1,7 +1,6 @@
 pre.mw-syntaxhighlight > code.mw-syntaxhighlight-code {
     border-radius: unset;
     border: unset;
-    padding: unset;
 }
 
 :where(pre.mw-syntaxhighlight:not(.clipboard) + .toolbar)

@@ -11,15 +11,21 @@
     },
     "Hooks": {
         "ParserFirstCallInit": "main",
-        "EditPage::showEditForm:initial": "main"
+        "EditPage::showEditForm:initial": "main",
+        "GetPreferences": "main",
+        "ParserOptionsRegister": "main"
     },
     "HookHandlers": {
         "main": {
-            "class": "SyntaxHighlight"
+            "class": "SyntaxHighlight",
+            "services": ["UserOptionsLookup"]
         }
     },
     "MessagesDirs": {
         "SyntaxHighlight_PrismJS": ["i18n"]
+    },
+    "DefaultUserOptions": {
+        "syntaxhighlight-theme": "default"
     },
     "manifest_version": 2
 }
