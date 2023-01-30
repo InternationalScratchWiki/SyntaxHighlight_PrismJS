@@ -16,7 +16,7 @@
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\EditPage__showEditForm_initialHook;
 
-class SyntaxHighlight implements ParserFirstCallInitHook {
+class SyntaxHighlight implements ParserFirstCallInitHook, EditPage__showEditForm_initialHook {
     /* Mapping of PrismJS language to ResourceLoader name */
     const AVAILABLE_LANGUAGES = array(
         'apacheconf' => 'apacheconf',
