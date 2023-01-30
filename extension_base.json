@@ -1,8 +1,6 @@
 {
     "name": "SyntaxHighlight_PrismJS",
-    "author": [
-        "apple502j"
-    ],
+    "author": ["apple502j"],
     "descriptionmsg": "syntaxhighlight-desc",
     "license-name": "GPL-3.0-or-later",
     "type": "parserhook",
@@ -13,17 +11,21 @@
     },
     "Hooks": {
         "ParserFirstCallInit": "main",
-        "EditPage::showEditForm:initial": "main"
+        "EditPage::showEditForm:initial": "main",
+        "GetPreferences": "main",
+        "ParserOptionsRegister": "main"
     },
     "HookHandlers": {
         "main": {
-            "class": "SyntaxHighlight"
+            "class": "SyntaxHighlight",
+            "services": ["UserOptionsLookup"]
         }
     },
     "MessagesDirs": {
-        "SyntaxHighlight_PrismJS": [
-            "i18n"
-        ]
+        "SyntaxHighlight_PrismJS": ["i18n"]
+    },
+    "DefaultUserOptions": {
+        "syntaxhighlight-theme": "default"
     },
     "manifest_version": 2
 }

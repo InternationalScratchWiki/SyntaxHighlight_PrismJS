@@ -1,5 +1,12 @@
 {
     "syntaxhighlight-desc": "Description of extension",
     "syntaxhighlight-error-category": "Name of the tracking category added to pages with highlighting errors",
-    "syntaxhighlight-wikieditor-button": "Name of the button on WikiEditor to add syntax highlight tag"
+    "syntaxhighlight-wikieditor-button": "Name of the button on WikiEditor to add syntax highlight tag",
+    "syntaxhighlight-theme-default": "Theme preference option to use the default theme",
+    "syntaxhighlight-theme-prism": "Theme preference option to use the Prism light theme",
+    "syntaxhighlight-theme-coy": "Theme preference option to use the Coy light theme",
+    "syntaxhighlight-theme-okaidia": "Theme preference option to use the Okaidia dark theme",
+    "syntaxhighlight-theme-solarizedlight": "Theme preference option to use the Solarized Light light theme",
+    "syntaxhighlight-theme-tomorrow": "Theme preference option to use the Tomorrow Night dark theme",
+    "syntaxhighlight-preference-theme": "Theme preference option label"
 }

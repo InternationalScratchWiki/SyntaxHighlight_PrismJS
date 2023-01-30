@@ -1,6 +1,6 @@
 <?php
 /*
-    Copyright (C) 2020-2022 apple502j All rights reversed.
+    Copyright (C) 2020-2023 apple502j All rights reversed.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -13,10 +13,18 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+use MediaWiki\Hook\ParserOptionsRegisterHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\EditPage__showEditForm_initialHook;
+use MediaWiki\Preferences\Hook\GetPreferencesHook;
 
-class SyntaxHighlight implements ParserFirstCallInitHook {
+class SyntaxHighlight implements ParserFirstCallInitHook, EditPage__showEditForm_initialHook, GetPreferencesHook, ParserOptionsRegisterHook {
+    private $userOptionsLookup;
+
+    public function __construct($userOptionsLookup) {
+        $this->userOptionsLookup = $userOptionsLookup;
+    }
+
     /* Mapping of PrismJS language to ResourceLoader name */
     const AVAILABLE_LANGUAGES = array(
         'apacheconf' => 'apacheconf',
@@ -76,6 +84,14 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
         'mediawiki' => 'wiki',
         'mw' => 'wiki'
     );
+    /* Mapping of SyntaxHighlight name to PrismJS name */
+    const AVAILABLE_THEMES = array(
+        'prism' => 'prism',
+        'coy' => 'prismCoy',
+        'okaidia' => 'prismOkaidia',
+        'solarizedlight' => 'prismSolarizedlight',
+        'tomorrow' => 'prismTomorrow'
+    );
 
     public function onParserFirstCallInit($parser) {
         $parser->setHook('syntaxhighlight', array('SyntaxHighlight', 'onSyntaxHighlight'));
@@ -86,6 +102,28 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
         if (ExtensionRegistry::getInstance()->isLoaded('WikiEditor')) {
             $out->addModules(['ext.SyntaxHighlight.wikiEditor']);
         }
+    }
+
+    public function onGetPreferences($user, &$preferences) {
+        $themes = array_combine(array_map(function ($name) {
+            return 'syntaxhighlight-theme-' . $name;
+        }, array_keys(self::AVAILABLE_THEMES)), array_keys(self::AVAILABLE_THEMES));
+        $themes = array_merge(array('syntaxhighlight-theme-default' => 'default'), $themes);
+        $preferences['syntaxhighlight-theme'] = array(
+            'type' => 'select',
+            'options-messages' => $themes,
+            'label-message' => 'syntaxhighlight-preference-theme',
+            'section' => 'rendering/advancedrendering',
+            'tooltip' => 'hoge'
+        );
+    }
+
+    public function onParserOptionsRegister(&$defaults, &$inCacheKey, &$lazyLoad) {
+        $defaults['syntaxhighlight-theme'] = self::getDefaultTheme();
+        $inCacheKey['syntaxhighlight-theme'] = true;
+        $lazyLoad['syntaxhighlight-theme'] = function ($options) {
+            return $this->getThemeForUser($options->getUserIdentity());
+        };
     }
 
     private static function addError(Parser $parser): void {
@@ -114,6 +152,7 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
 
         $inline = isset($argv['inline']);
         $showLineNum = isset($argv['line']) && !$inline;
+        $clipboard = isset($argv['clipboard']);
         $highlight = null;
         if (isset($argv['highlight']) && !$inline) {
             $highlight = strval($argv['highlight']);
@@ -138,7 +177,7 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
 
         if (!$inline) {
             $preTagAttrs = array(
-                'class' => 'mw-syntaxhighlight mw-content-ltr ' . ($showLineNum ? 'line-numbers' : 'no-line-numbers'),
+                'class' => 'mw-syntaxhighlight mw-content-ltr ' . ($showLineNum ? 'line-numbers' : 'no-line-numbers') . ($clipboard ? ' clipboard' : ''),
                 'dir' => 'ltr'
             );
             if ($highlight) {
@@ -148,6 +187,31 @@ class SyntaxHighlight implements ParserFirstCallInitHook {
         }
 
         $out->addModuleStyles(['ext.SyntaxHighlight.core.css']);
+        // cannot use addModuleStyles
+        $out->addModules(['ext.SyntaxHighlight.theme.' . self::AVAILABLE_THEMES[$parser->getOptions()->getOption('syntaxhighlight-theme')]]);
+
         return array($outputCode, 'markerType' => 'nowiki');
+    }
+
+    public static function getDefaultTheme() {
+        global $wgDefaultUserOptions, $wgSWS2ForceDarkTheme;
+        return ((isset($wgSWS2ForceDarkTheme) && $wgSWS2ForceDarkTheme) || !empty($wgDefaultUserOptions['scratchwikiskin-dark-theme'])) ? 'okaidia' : 'prism';
+    }
+
+    public function getThemeForUser($user = null) {
+        global $wgSWS2ForceDarkTheme;
+        if (!$user) $user = RequestContext::getMain()->getUser();
+        if (!$user) {
+            return self::getDefaultTheme();
+        }
+        $lookup = $this->userOptionsLookup;
+        $theme = $lookup->getOption($user, 'syntaxhighlight-theme');
+        if (!$theme || $theme === 'default' || !array_key_exists($theme, self::AVAILABLE_THEMES)) {
+            if ((isset($wgSWS2ForceDarkTheme) && $wgSWS2ForceDarkTheme) || $lookup->getOption($user, 'scratchwikiskin-dark-theme')) {
+                return 'okaidia';
+            }
+            return 'prism';
+        }
+        return $theme;
     }
 }
