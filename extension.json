@@ -72,6 +72,25 @@
                 "ext.SyntaxHighlight.core"
             ]
         },
+        "ext.SyntaxHighlight.toolbar": {
+            "styles": "prism-toolbar.css",
+            "packageFiles": "prism-toolbar.min.js",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core"
+            ]
+        },
+        "ext.SyntaxHighlight.copyToClipboard": {
+            "styles": "prism-copy-to-clipboard.css",
+            "packageFiles": "prism-copy-to-clipboard.min.js",
+            "localBasePath": "resources",
+            "remoteExtPath": "SyntaxHighlight_PrismJS/resources",
+            "dependencies": [
+                "ext.SyntaxHighlight.core",
+                "ext.SyntaxHighlight.toolbar"
+            ]
+        },
         "ext.SyntaxHighlight.apacheconf": {
             "packageFiles": [
                 "prism-apacheconf.min.js"

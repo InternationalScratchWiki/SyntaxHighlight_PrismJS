@@ -10,10 +10,13 @@ const domLoaded = () => {
       )
     );
     const plugins = [];
-    if (document.querySelectorAll("pre.mw-syntaxhighlight.line-numbers")) {
+    if (document.querySelector("pre.mw-syntaxhighlight.line-numbers")) {
       plugins.push("ext.SyntaxHighlight.lineNumbers");
     }
-    if (document.querySelectorAll("pre.mw-syntaxhighlight[data-line]")) {
+    if (document.querySelector("pre.mw-syntaxhighlight.clipboard")) {
+      plugins.push("ext.SyntaxHighlight.copyToClipboard");
+    }
+    if (document.querySelector("pre.mw-syntaxhighlight[data-line]")) {
       plugins.push("ext.SyntaxHighlight.lineHighlight");
     }
     mw.loader.using(languages.map(lang => `ext.SyntaxHighlight.${lang}`).concat(plugins)).then(() => {

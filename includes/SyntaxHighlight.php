@@ -114,6 +114,7 @@ class SyntaxHighlight implements ParserFirstCallInitHook, EditPage__showEditForm
 
         $inline = isset($argv['inline']);
         $showLineNum = isset($argv['line']) && !$inline;
+        $clipboard = isset($argv['clipboard']);
         $highlight = null;
         if (isset($argv['highlight']) && !$inline) {
             $highlight = strval($argv['highlight']);
@@ -138,7 +139,7 @@ class SyntaxHighlight implements ParserFirstCallInitHook, EditPage__showEditForm
 
         if (!$inline) {
             $preTagAttrs = array(
-                'class' => 'mw-syntaxhighlight mw-content-ltr ' . ($showLineNum ? 'line-numbers' : 'no-line-numbers'),
+                'class' => 'mw-syntaxhighlight mw-content-ltr ' . ($showLineNum ? 'line-numbers' : 'no-line-numbers') . ($clipboard ? ' clipboard' : ''),
                 'dir' => 'ltr'
             );
             if ($highlight) {

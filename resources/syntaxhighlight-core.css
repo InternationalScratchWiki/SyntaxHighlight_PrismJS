@@ -3,3 +3,7 @@ pre.mw-syntaxhighlight > code.mw-syntaxhighlight-code {
   border: unset;
   padding: unset;
 }
+
+:where(pre.mw-syntaxhighlight:not(.clipboard) + .toolbar) .copy-to-clipboard-button {
+  display: none;
+}

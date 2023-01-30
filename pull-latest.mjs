@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 import { camelCase } from "camel-case";
 
 /*
-    Copyright (C) 2020 apple502j All rights reversed.
+    Copyright (C) 2020-2023 apple502j All rights reversed.
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -16,7 +16,7 @@ import { camelCase } from "camel-case";
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-const PLUGINS = ["line-highlight", "line-numbers"];
+const PLUGINS = ["line-highlight", "line-numbers", "toolbar", "copy-to-clipboard"];
 const LANGUAGES = [
     "apacheconf",
     "core",
@@ -76,7 +76,9 @@ const DEPENDENCIES = {
     "shell-session": ["bash"],
     swift: ["clike"],
     vbnet: ["basic"],
-    wiki: ["markup"]
+    wiki: ["markup"],
+
+    "copy-to-clipboard": ["toolbar"]
 };
 
 if (process.argv[2] !== "-Nd") {
@@ -135,9 +137,9 @@ extensionJSON.ResourceModules = {
     }
 };
 
-const solveDependencies = langName =>
-    DEPENDENCIES.hasOwnProperty(langName) ?
-        DEPENDENCIES[langName].map(dependency => `ext.SyntaxHighlight.${camelCase(dependency)}`) :
+const solveDependencies = name =>
+    DEPENDENCIES.hasOwnProperty(name) ?
+        DEPENDENCIES[name].map(dependency => `ext.SyntaxHighlight.${camelCase(dependency)}`) :
         [];
 
 PLUGINS.forEach(pluginName => {
@@ -146,7 +148,7 @@ PLUGINS.forEach(pluginName => {
         packageFiles: `prism-${pluginName}.min.js`,
         localBasePath: "resources",
         remoteExtPath: "SyntaxHighlight_PrismJS/resources",
-        dependencies: ["ext.SyntaxHighlight.core"]
+        dependencies: ["ext.SyntaxHighlight.core", ...solveDependencies(pluginName)]
     }
 });
 
