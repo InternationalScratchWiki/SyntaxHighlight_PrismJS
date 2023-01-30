@@ -16,7 +16,12 @@ import { camelCase } from "camel-case";
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-const PLUGINS = ["line-highlight", "line-numbers", "toolbar", "copy-to-clipboard"];
+const PLUGINS = [
+    "line-highlight",
+    "line-numbers",
+    "toolbar",
+    "copy-to-clipboard",
+];
 const LANGUAGES = [
     "apacheconf",
     "core",
@@ -56,12 +61,12 @@ const LANGUAGES = [
     "vbnet",
     "vim",
     "wiki",
-    "yaml"
+    "yaml",
 ];
 const EXTRAS = {
     css: "css-extras",
     javascript: "js-extras",
-    php: "php-extras"
+    php: "php-extras",
 };
 const DEPENDENCIES = {
     c: ["clike"],
@@ -78,33 +83,41 @@ const DEPENDENCIES = {
     vbnet: ["basic"],
     wiki: ["markup"],
 
-    "copy-to-clipboard": ["toolbar"]
+    "copy-to-clipboard": ["toolbar"],
 };
 
 if (process.argv[2] !== "-Nd") {
     // Part 1: Download
     const write = (fn, data) => {
         console.log("Writing:", fn);
-        return fs.writeFile(`./resources/${fn}`, data, { encoding: "utf8" })
+        return fs.writeFile(`./resources/${fn}`, data, { encoding: "utf8" });
     };
 
     await Promise.all([
-        fetch("https://raw.githubusercontent.com/PrismJS/prism/master/themes/prism.css")
-            .then(resp => resp.text())
-            .then(txt => write("prism.css", txt)),
-        ...PLUGINS.flatMap(name => [
-            fetch(`https://raw.githubusercontent.com/PrismJS/prism/master/plugins/${name}/prism-${name}.min.js`)
-                .then(resp => resp.text())
-                .then(txt => write(`prism-${name}.min.js`, txt)),
-            fetch(`https://raw.githubusercontent.com/PrismJS/prism/master/plugins/${name}/prism-${name}.css`)
-                .then(resp => resp.text())
-                .then(txt => write(`prism-${name}.css`, txt)),
-        ]),
-        ...LANGUAGES.map(
-            name => fetch(`https://raw.githubusercontent.com/PrismJS/prism/master/components/prism-${name}.min.js`)
-                .then(resp => resp.text())
-                .then(txt => write(`prism-${name}.min.js`, txt))
+        fetch(
+            "https://raw.githubusercontent.com/PrismJS/prism/master/themes/prism.css"
         )
+            .then((resp) => resp.text())
+            .then((txt) => write("prism.css", txt)),
+        ...PLUGINS.flatMap((name) => [
+            fetch(
+                `https://raw.githubusercontent.com/PrismJS/prism/master/plugins/${name}/prism-${name}.min.js`
+            )
+                .then((resp) => resp.text())
+                .then((txt) => write(`prism-${name}.min.js`, txt)),
+            fetch(
+                `https://raw.githubusercontent.com/PrismJS/prism/master/plugins/${name}/prism-${name}.css`
+            )
+                .then((resp) => resp.text())
+                .then((txt) => write(`prism-${name}.css`, txt)),
+        ]),
+        ...LANGUAGES.map((name) =>
+            fetch(
+                `https://raw.githubusercontent.com/PrismJS/prism/master/components/prism-${name}.min.js`
+            )
+                .then((resp) => resp.text())
+                .then((txt) => write(`prism-${name}.min.js`, txt))
+        ),
     ]);
 }
 
@@ -116,56 +129,72 @@ extensionJSON.ResourceModules = {
         styles: "prism.css",
         packageFiles: "prism-core.min.js",
         localBasePath: "resources",
-        remoteExtPath: "SyntaxHighlight_PrismJS/resources"
+        remoteExtPath: "SyntaxHighlight_PrismJS/resources",
     },
     "ext.SyntaxHighlight.core.css": {
         styles: "syntaxhighlight-core.css",
         localBasePath: "resources",
-        remoteExtPath: "SyntaxHighlight_PrismJS/resources"
+        remoteExtPath: "SyntaxHighlight_PrismJS/resources",
     },
     "ext.SyntaxHighlight.core.js": {
         packageFiles: "syntaxhighlight-core.js",
         localBasePath: "resources",
-        remoteExtPath: "SyntaxHighlight_PrismJS/resources"
+        remoteExtPath: "SyntaxHighlight_PrismJS/resources",
     },
     "ext.SyntaxHighlight.wikiEditor": {
         packageFiles: "syntaxhighlight-wikieditor.js",
         localBasePath: "resources",
         remoteExtPath: "SyntaxHighlight_PrismJS/resources",
         dependencies: ["ext.wikiEditor"],
-        messages: ["syntaxhighlight-wikieditor-button"]
-    }
+        messages: ["syntaxhighlight-wikieditor-button"],
+    },
 };
 
-const solveDependencies = name =>
-    DEPENDENCIES.hasOwnProperty(name) ?
-        DEPENDENCIES[name].map(dependency => `ext.SyntaxHighlight.${camelCase(dependency)}`) :
-        [];
+const solveDependencies = (name) =>
+    DEPENDENCIES.hasOwnProperty(name)
+        ? DEPENDENCIES[name].map(
+              (dependency) => `ext.SyntaxHighlight.${camelCase(dependency)}`
+          )
+        : [];
 
-PLUGINS.forEach(pluginName => {
-    extensionJSON.ResourceModules[`ext.SyntaxHighlight.${camelCase(pluginName)}`] = {
+PLUGINS.forEach((pluginName) => {
+    extensionJSON.ResourceModules[
+        `ext.SyntaxHighlight.${camelCase(pluginName)}`
+    ] = {
         styles: `prism-${pluginName}.css`,
         packageFiles: `prism-${pluginName}.min.js`,
         localBasePath: "resources",
         remoteExtPath: "SyntaxHighlight_PrismJS/resources",
-        dependencies: ["ext.SyntaxHighlight.core", ...solveDependencies(pluginName)]
-    }
+        dependencies: [
+            "ext.SyntaxHighlight.core",
+            ...solveDependencies(pluginName),
+        ],
+    };
 });
 
-LANGUAGES.forEach(langName => {
+LANGUAGES.forEach((langName) => {
     if (langName === "core" || langName.endsWith("-extras")) return;
     const packageFiles = [`prism-${langName}.min.js`];
-    const dependencies = ["ext.SyntaxHighlight.core", ...solveDependencies(langName)];
+    const dependencies = [
+        "ext.SyntaxHighlight.core",
+        ...solveDependencies(langName),
+    ];
     if (EXTRAS.hasOwnProperty(langName)) {
         packageFiles.push(`prism-${EXTRAS[langName]}.min.js`);
     }
-    extensionJSON.ResourceModules[`ext.SyntaxHighlight.${camelCase(langName)}`] = {
+    extensionJSON.ResourceModules[
+        `ext.SyntaxHighlight.${camelCase(langName)}`
+    ] = {
         packageFiles,
         dependencies,
         localBasePath: "resources",
-        remoteExtPath: "SyntaxHighlight_PrismJS/resources"
-    }
+        remoteExtPath: "SyntaxHighlight_PrismJS/resources",
+    };
 });
 
 console.log("Generated extension.json");
-await fs.writeFile("extension.json", JSON.stringify(extensionJSON, null, 4), "utf8");
+await fs.writeFile(
+    "extension.json",
+    JSON.stringify(extensionJSON, null, 4),
+    "utf8"
+);

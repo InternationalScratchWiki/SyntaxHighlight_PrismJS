@@ -1,9 +1,10 @@
 pre.mw-syntaxhighlight > code.mw-syntaxhighlight-code {
-  border-radius: unset;
-  border: unset;
-  padding: unset;
+    border-radius: unset;
+    border: unset;
+    padding: unset;
 }
 
-:where(pre.mw-syntaxhighlight:not(.clipboard) + .toolbar) .copy-to-clipboard-button {
-  display: none;
+:where(pre.mw-syntaxhighlight:not(.clipboard) + .toolbar)
+    .copy-to-clipboard-button {
+    display: none;
 }
