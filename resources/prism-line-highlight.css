@@ -30,6 +30,7 @@ pre[data-line] {
 	}
 }
 
+/* @noflip */
 	.line-highlight:before,
 	.line-highlight[data-end]:after {
 		content: attr(data-start);
