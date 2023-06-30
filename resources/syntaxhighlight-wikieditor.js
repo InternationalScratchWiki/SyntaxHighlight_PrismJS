@@ -4,7 +4,7 @@ mw.hook('wikiEditor.toolbarReady').add(function ($textarea) {
         group: 'insert',
         tools: {
             smile: {
-                labelMsg: 'syntaxhighlight-wikieditor-button',
+                label: mw.message( 'syntaxhighlight-wikieditor-button' ).text(),
                 type: 'button',
                 oouiIcon: 'code',
                 action: {
